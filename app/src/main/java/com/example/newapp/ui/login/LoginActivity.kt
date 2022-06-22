@@ -15,17 +15,27 @@ import android.widget.Toast
 import com.example.newapp.databinding.ActivityLoginBinding
 
 import com.example.newapp.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+// Initialize Firebase Auth
+          auth = Firebase.auth
 
         val username = binding.username
         val password = binding.password
