@@ -19,29 +19,35 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var email: EditText
     private lateinit var password: EditText
 
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            // reload();
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+        val loginbtn: Button = findViewById(R.id.login)
         val email: EditText = findViewById(R.id.email)
         val password: EditText = findViewById(R.id.password)
 
 // ...
 // Initialize Firebase Auth
         auth = Firebase.auth
-         fun onStart() {
-            super.onStart()
-            // Check if user is signed in (non-null) and update UI accordingly.
-            val currentUser = auth.currentUser
-            if(currentUser != null){
-               // reload();
-            }
-        }
 
     }
 
 
 
     fun addUser(view: View) {
+        val email = email.text.toString()
+        val password = password.text.toString()
+
 
         auth.createUserWithEmailAndPassword(email.toString(), password.toString())
             .addOnCompleteListener(this) { task ->
