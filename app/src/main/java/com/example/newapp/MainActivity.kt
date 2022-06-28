@@ -1,5 +1,6 @@
 package com.example.newapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -45,6 +47,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){R.id.action_mentolist->{
+            val  intent = Intent(this,
+                ListActivity::class.java)
+            startActivity(intent)
+                Toast.makeText(this,"List Selected", Toast.LENGTH_SHORT).show()
+            }R.id.action_home->{
+                Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
         return super.onOptionsItemSelected(item)
     }
 }
