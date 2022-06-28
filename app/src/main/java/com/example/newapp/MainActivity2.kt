@@ -18,6 +18,7 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var email: EditText
     private lateinit var password: EditText
+    private lateinit var loginbtn: Button
 
     override fun onStart() {
         super.onStart()
@@ -34,14 +35,15 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
         val loginbtn: Button = findViewById(R.id.login)
         val email: EditText = findViewById(R.id.email)
-        val password: EditText = findViewById(R.id.password)
+        val password: EditText = findViewById(R.id.email)
 
 // ...
 // Initialize Firebase Auth
         auth = Firebase.auth
 
-    }
 
+
+    }
 
 
     fun addUser(view: View) {
@@ -68,6 +70,11 @@ class MainActivity2 : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user!== null){}
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun add(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
