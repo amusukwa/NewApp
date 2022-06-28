@@ -11,4 +11,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="name">Name</string>
     <string name="proficiency">proficiency</string>
+    <string name="home">home</string>
+    <string name="mentorlist">mentorlist</string>
 </resources>
