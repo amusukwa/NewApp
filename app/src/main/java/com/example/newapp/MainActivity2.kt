@@ -34,10 +34,9 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         val loginbtn: Button = findViewById(R.id.login)
-        val email: EditText = findViewById(R.id.email)
-        val password: EditText = findViewById(R.id.email)
 
-// ...
+
+
 // Initialize Firebase Auth
         auth = Firebase.auth
 
@@ -47,8 +46,13 @@ class MainActivity2 : AppCompatActivity() {
 
 
     fun addUser(view: View) {
-        val email = email.text.toString()
-        val password = password.text.toString()
+        val emailtxt: EditText = findViewById<EditText>(R.id.email)
+        val passwordtxt: EditText = findViewById<EditText>(R.id.password)
+
+      val email = emailtxt.text.toString()
+       val password = passwordtxt.text.toString()
+
+
 
 
         auth.createUserWithEmailAndPassword(email.toString(), password.toString())
