@@ -20,8 +20,8 @@ class ListActivity : AppCompatActivity() {
 
 
 
-       // recyclerview = findViewById<RecyclerView>(com.google.firebase.database.R.id.mentor_recycler)
-       // recyclerview.layoutManager = LinearLayoutManager(this)
+        recyclerview = findViewById<RecyclerView>(R.id.mentor_recycler)
+        recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.setHasFixedSize(true)
         var adapter = Myadapter(mentorArray)
 
