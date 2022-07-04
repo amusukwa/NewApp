@@ -1,11 +1,18 @@
 package com.example.newapp
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 
 class Myadapter (private val mentorArray: ArrayList<Mentor>): RecyclerView.Adapter<Myadapter.MyViewHolder>() {
+    private lateinit var docRef: DatabaseReference
 
 
 
@@ -27,6 +34,25 @@ class Myadapter (private val mentorArray: ArrayList<Mentor>): RecyclerView.Adapt
         val mentor:Mentor = mentorArray[position]
         holder.name.text = mentor.name
         holder.proficiency.text = mentor.proficiency
+
+        val mentorListener = object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()){
+                    for(mentorSnapshot in snapshot.children){
+                        val mentor = snapshot.getValue(Mentor::class.java)
+                        mentorArray.add(mentor!!)
+                    }
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+              //docRef.addValueEventListener(mentorListener)
+
+        }
     }
 
     override fun getItemCount(): Int {

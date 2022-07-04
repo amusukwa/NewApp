@@ -24,29 +24,55 @@ class ListActivity : AppCompatActivity() {
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.setHasFixedSize(true)
         var adapter = Myadapter(mentorArray)
+        recyclerview.adapter = Myadapter(mentorArray)
 
+         getMentor()
+
+
+    }
+
+    private fun getMentor() {
         docRef = FirebaseDatabase.getInstance().getReference("mentors")
-
-
-
-    }
-    val mentorListener = object: ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-
-            if(snapshot.exists()){
-                for(mentorSnapshot in snapshot.children){
-                    val mentor = snapshot.getValue(Mentor::class.java)
-                    mentorArray.add(mentor!!)
+        docRef.addValueEventListener(object:ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(mentorSnapshot in snapshot.children){
+                        val mentor = snapshot.getValue(Mentor::class.java)
+                        mentorArray.add(mentor!!)
+                    }
+                    recyclerview.adapter = Myadapter(mentorArray)
                 }
-                recyclerview.adapter = Myadapter(mentorArray)
             }
-        }
 
-        override fun onCancelled(databaseError: DatabaseError) {
-            Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-        }
-        //  docRef.addValueEventListener(mentorListener)
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+
+        })
+//        val mentorListener = object: ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//
+//                if(snapshot.exists()){
+//                    for(mentorSnapshot in snapshot.children){
+//                        val mentor = snapshot.getValue(Mentor::class.java)
+//                        mentorArray.add(mentor!!)
+//                    }
+//                    recyclerview.adapter = Myadapter(mentorArray)
+//                }
+//            }
+//            //docRef.addValueEventListener(mentorListener)
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+//            }
+//
+//
+//        }
 
     }
+
+
 
 }
