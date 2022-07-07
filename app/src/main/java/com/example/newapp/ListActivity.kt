@@ -44,8 +44,8 @@ class ListActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
             }
 
 
