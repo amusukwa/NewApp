@@ -35,24 +35,7 @@ class Myadapter (private val mentorArray: ArrayList<Mentor>): RecyclerView.Adapt
         holder.name.text = mentor.name
         holder.proficiency.text = mentor.proficiency
 
-        val mentorListener = object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
 
-                if(snapshot.exists()){
-                    for(mentorSnapshot in snapshot.children){
-                        val mentor = snapshot.getValue(Mentor::class.java)
-                        mentorArray.add(mentor!!)
-                    }
-
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-            }
-              //docRef.addValueEventListener(mentorListener)
-
-        }
     }
 
     override fun getItemCount(): Int {

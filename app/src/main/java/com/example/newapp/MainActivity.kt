@@ -53,6 +53,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
                 Toast.makeText(this,"List Selected", Toast.LENGTH_SHORT).show()
             }R.id.action_home->{
+            val  intent = Intent(this,
+                PicActivity::class.java)
+            startActivity(intent)
                 Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
             }
 
