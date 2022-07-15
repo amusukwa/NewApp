@@ -7,12 +7,13 @@ import android.view.View
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.storage.FirebaseStorage
 import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
 class PicActivity : AppCompatActivity() {
-    lateinit var Imageuri: URI
+    lateinit var Imageuri: Uri
    // private lateinit var storageReference: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,9 @@ class PicActivity : AppCompatActivity() {
         val formatter = SimpleDateFormat("yyyy_mo_dd__min", Locale.ENGLISH)
         val now = Date()
         val fileName = formatter.format(now)
-       // val storageReference = FirebaseStorage
+
+        val storageReference = FirebaseStorage.getInstance().getReference()
+        storageReference.putFile(Imageuri)
 
     }
 }
