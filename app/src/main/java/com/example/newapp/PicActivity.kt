@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
@@ -42,7 +43,9 @@ class PicActivity : AppCompatActivity() {
         val fileName = formatter.format(now)
 
         val storageReference = FirebaseStorage.getInstance().getReference()
-        storageReference.putFile(Imageuri)
+//        storageReference.putFile(Imageuri).addOnSuccessListener(
+//            Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
+//        ).addOnFailureListener()
 
     }
 }
