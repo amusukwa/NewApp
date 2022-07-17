@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val mentorbutton: Button = findViewById(R.id.add_mentor)
-        //var nameText: TextView = findViewById(com.google.firebase.database.R.id.name)
+        // val vm =  ViewModelProviders.of(this{MainActivityViewModel::class.java})
     }
 
     fun addMentor(view: View) {
-        val docRef = FirebaseDatabase.getInstance().getReference("mentors")
+        val docRef = FirebaseDatabase.getInstance().reference.child("mentors")
 
         val nametxt: EditText = findViewById<EditText>(R.id.name)
         val proficiencytxt: EditText = findViewById<EditText>(R.id.proficiency_edit)
