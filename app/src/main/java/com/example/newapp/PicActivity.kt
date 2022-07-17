@@ -42,7 +42,25 @@ class PicActivity : AppCompatActivity() {
         val now = Date()
         val fileName = formatter.format(now)
 
-        val storageReference = FirebaseStorage.getInstance().getReference()
+    val database = FirebaseDatabase.getInstance()
+    val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+    refStorage.putFile(Imageuri)
+    .addOnSuccessListener(
+        OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+            taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                val imageUrl = it.toString()
+            }
+        })
+
+    ?.addOnFailureListener(OnFailureListener { e ->
+        print(e.message)
+    })
+  }
+}
+
+
+        
 //        storageReference.putFile(Imageuri).addOnSuccessListener(
 //            Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
 //        ).addOnFailureListener()
