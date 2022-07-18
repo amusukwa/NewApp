@@ -54,7 +54,6 @@ class MainActivity2 : AppCompatActivity() {
 
 
 
-
         auth.createUserWithEmailAndPassword(email.toString(), password.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
