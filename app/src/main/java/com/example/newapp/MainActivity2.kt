@@ -75,6 +75,10 @@ class MainActivity2 : AppCompatActivity() {
         if(user!== null){}
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        else{
+           Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show() 
+        }
     }
 
     fun add(view: View) {
