@@ -8,7 +8,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,7 +45,6 @@ class PicActivity : AppCompatActivity() {
         val now = Date()
         val fileName = formatter.format(now)
 
-    val database = FirebaseDatabase.getInstance()
     val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
 
     refStorage.putFile(Imageuri)
@@ -56,7 +58,7 @@ class PicActivity : AppCompatActivity() {
     ?.addOnFailureListener(OnFailureListener { e ->
         print(e.message)
     })
-  }
+
 }
 
 
@@ -65,5 +67,5 @@ class PicActivity : AppCompatActivity() {
 //            Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
 //        ).addOnFailureListener()
 
-    }
+
 }

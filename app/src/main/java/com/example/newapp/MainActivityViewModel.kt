@@ -1,5 +1,7 @@
 package com.example.newapp
 
-class MainActivityViewModel {
+import androidx.lifecycle.ViewModel
+
+class MainActivityViewModel: ViewModel() {
    // var mentorId = mentor.name
 }
