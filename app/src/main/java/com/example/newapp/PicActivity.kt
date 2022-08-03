@@ -1,8 +1,10 @@
 package com.example.newapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -24,7 +26,6 @@ class PicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pic)
         val addbutton: Button = findViewById(R.id.add)
-
         val upLoad: Button = findViewById(R.id.upload)
 
 
@@ -41,7 +42,7 @@ class PicActivity : AppCompatActivity() {
 
     fun upLoad(view: View) {
 
-        val formatter = SimpleDateFormat("yyyy_mo_dd__min", Locale.ENGLISH)
+        val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH)
         val now = Date()
         val fileName = formatter.format(now)
 
@@ -52,6 +53,8 @@ class PicActivity : AppCompatActivity() {
         OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
             taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                 val imageUrl = it.toString()
+                Log.d(ContentValues.TAG, "createUserWithEmail:success")
+
             }
         })
 

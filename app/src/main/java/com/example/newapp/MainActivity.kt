@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addMentor(view: View) {
-        val docRef = FirebaseDatabase.getInstance().reference.child("mentors")
+        val docRef = FirebaseDatabase.getInstance().getReference().child("mentors")
 
         val nametxt: EditText = findViewById<EditText>(R.id.name)
         val proficiencytxt: EditText = findViewById<EditText>(R.id.proficiency_edit)

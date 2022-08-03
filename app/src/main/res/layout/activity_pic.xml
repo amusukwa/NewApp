@@ -40,7 +40,8 @@
         app:layout_constraintBottom_toTopOf="@+id/add"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="154dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
