@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -14,12 +15,18 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.common.InputImage.fromFilePath
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
 class PicActivity : AppCompatActivity() {
     lateinit var Imageuri: Uri
+    lateinit var imageView: ImageView
+    lateinit var image: InputImage
    // private lateinit var storageReference: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +38,17 @@ class PicActivity : AppCompatActivity() {
 
     }
 
+    val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
     val  getContent = registerForActivityResult(ActivityResultContracts
-        .GetContent()){uri: Uri?-> uri?.let { imageUri-> }}
+        .GetContent()){uri: Uri?-> uri?.let { imageView-> }}
+
+//    try{
+//        image = fromFilePath(context, uri)
+//    } catch (e: IOException) {
+//        e.printStackTrace()
+//    }
+
+
 
 
     fun addPics(view: View) {
@@ -40,35 +56,16 @@ class PicActivity : AppCompatActivity() {
     }
 
 
-    fun upLoad(view: View) {
+//    val result = recognizer.process(image)
+//        .addOnSuccessListener { visionText ->
+//            // Task completed successfully
+//            // ...
+//        }
+//        .addOnFailureListener { e ->
+//            // Task failed with an exception
+//            // ...
+//        }
 
-        val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH)
-        val now = Date()
-        val fileName = formatter.format(now)
-
-    val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
-
-    refStorage.putFile(Imageuri)
-    .addOnSuccessListener(
-        OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-            taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                val imageUrl = it.toString()
-                Log.d(ContentValues.TAG, "createUserWithEmail:success")
-
-            }
-        })
-
-    ?.addOnFailureListener(OnFailureListener { e ->
-        print(e.message)
-    })
-
-}
-
-
-        
-//        storageReference.putFile(Imageuri).addOnSuccessListener(
-//            Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
-//        ).addOnFailureListener()
 
 
 }
