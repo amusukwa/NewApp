@@ -42,28 +42,30 @@ class MainActivity2 : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        val signInLauncher = registerForActivityResult(
+            FirebaseAuthUIActivityResultContract()
+        ) { res ->
+            this.onSignInResult(res)
+        }
+
+
         googlebtn.setOnClickListener {
 
 
-//       val signInLauncher = registerForActivityResult(
-//            FirebaseAuthUIActivityResultContract()
-//        ) { res ->
-//            this.onSignInResult(res)
-//        }
 
-//        // Choose authentication providers
-//        val providers = arrayListOf(
-//            AuthUI.IdpConfig.EmailBuilder().build(),
-//            AuthUI.IdpConfig.PhoneBuilder().build(),
-//            AuthUI.IdpConfig.GoogleBuilder().build(),
-//            AuthUI.IdpConfig.TwitterBuilder().build())
-//
-//        // Create and launch sign-in intent
-//        val signInIntent = AuthUI.getInstance()
-//            .createSignInIntentBuilder()
-//            .setAvailableProviders(providers)
-//            .build()
-//        signInLauncher.launch(signInIntent)
+        // Choose authentication providers
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.PhoneBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build(),
+            AuthUI.IdpConfig.TwitterBuilder().build())
+
+        // Create and launch sign-in intent
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .build()
+        signInLauncher.launch(signInIntent)
 
         }
 

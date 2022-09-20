@@ -13,11 +13,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
-    private lateinit var docRef: DatabaseReference
+   // private lateinit var docRef: DatabaseReference
     private lateinit var nameTxt: TextView
     //private lateinit var analytics: FirebaseAnalytics
 
@@ -29,17 +30,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addMentor(view: View) {
-        val dcRef = FirebaseDatabase.getInstance().getReference().child("mentors")
+        //val dcRef = FirebaseDatabase.getInstance().getReference().child("mentors")
+        val db = FirebaseFirestore.getInstance()
 
         val nametxt: EditText = findViewById<EditText>(R.id.name)
-        val proficiencytxt: EditText = findViewById<EditText>(R.id.proficiency_edit)
+        val description: EditText = findViewById<EditText>(R.id.proficiency_edit)
+        val project_creator: EditText = findViewById<EditText>(R.id.project_creator)
 
 
-        val name = nametxt.text.toString()
-        val proficiency = proficiencytxt.text.toString()
+        val name = nametxt.toString()
+        val proficiency = description.text.toString()
+        val projectcreator = project_creator.text.toString()
 
-        val mentor:Mentor = Mentor(name,proficiency)
-        docRef.setValue(mentor)
+        //val project: = Projects(name,proficiency)
+       // docRef.setValue(mentor)
 
     }
 

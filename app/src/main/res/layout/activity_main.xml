@@ -43,6 +43,19 @@
         app:layout_constraintTop_toBottomOf="@+id/name"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <EditText
+        android:id="@+id/project_creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:autofillHints="video"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        tools:ignore="TouchTargetSizeCheck" />
+
 
     <Button
         android:id="@+id/add_mentor"
