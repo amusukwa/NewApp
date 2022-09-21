@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -79,28 +81,6 @@ class MainActivity2 : AppCompatActivity() {
 
         val email = emailtxt.text.toString()
         val password = passwordtxt.text.toString()
-
-
-//       val signInLauncher = registerForActivityResult(
-//            FirebaseAuthUIActivityResultContract()
-//        ) { res ->
-//            this.onSignInResult(res)
-//        }
-
-//        // Choose authentication providers
-//        val providers = arrayListOf(
-//            AuthUI.IdpConfig.EmailBuilder().build(),
-//            AuthUI.IdpConfig.PhoneBuilder().build(),
-//            AuthUI.IdpConfig.GoogleBuilder().build(),
-//            AuthUI.IdpConfig.TwitterBuilder().build())
-//
-//        // Create and launch sign-in intent
-//        val signInIntent = AuthUI.getInstance()
-//            .createSignInIntentBuilder()
-//            .setAvailableProviders(providers)
-//            .build()
-//        signInLauncher.launch(signInIntent)
-
 //        auth.createUserWithEmailAndPassword(email.toString(), password.toString())
 //            .addOnCompleteListener(this) { task ->
 //                if (task.isSuccessful) {
@@ -125,7 +105,10 @@ class MainActivity2 : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
-            // ...
+//            val  intent = Intent(this,
+//                MainActivity::class.java)
+//            startActivity(intent)
+
         } else {
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
@@ -147,11 +130,38 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
-    fun add(view: View) {
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.signout_menu,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_project -> {
+                val intent = Intent(
+                    this,
+                    MainActivity::class.java
+                )
+                startActivity(intent)
+                Toast.makeText(this, "List Selected", Toast.LENGTH_SHORT).show()
+            }
+            R.id.action_signout -> {
+                val intent = Intent(
+                    this,
+                    PicActivity::class.java
+                )
+
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        // ...
+                    }
+                Toast.makeText(this, "List", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
