@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         val proficiency = description.text.toString()
         val projectcreator = project_creator.text.toString()
 
-        //val project: = Projects(name,proficiency)
-       // docRef.setValue(mentor)
-
+        val project:Projects = Projects(name,proficiency)
+        //docRef.setValue(mentor)
+ db.collection("projects").add(project)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
