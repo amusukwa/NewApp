@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
 
         val nametxt: EditText = findViewById<EditText>(R.id.name)
-        val description: EditText = findViewById<EditText>(R.id.proficiency_edit)
-        val project_creator: EditText = findViewById<EditText>(R.id.project_creator)
+        val description: EditText = findViewById<EditText>(R.id.description)
+        val project_creator: EditText = findViewById<EditText>(R.id.creator)
 
 
         val name = nametxt.toString()
@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
 
         val project:Projects = Projects(name,proficiency)
         //docRef.setValue(mentor)
- db.collection("projects").add(project)
+ db.collection("projects").document().set(project)
+        
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
