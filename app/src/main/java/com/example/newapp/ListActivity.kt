@@ -11,21 +11,21 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ListActivity : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
-    private lateinit var mentorArray: ArrayList<Mentor>
+    private lateinit var projectsArray: ArrayList<Projects>
     private lateinit var docRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-        mentorArray = arrayListOf()
+        projectsArray = arrayListOf()
 
 
 
         recyclerview = findViewById<RecyclerView>(R.id.mentor_recycler)
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.setHasFixedSize(true)
-        var adapter = Myadapter(mentorArray)
-        recyclerview.adapter = Myadapter(mentorArray)
+        var adapter = Myadapter(projectsArray)
+        recyclerview.adapter = Myadapter(projectsArray)
 
          getMentor()
 

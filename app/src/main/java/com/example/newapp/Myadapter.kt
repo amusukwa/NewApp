@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
-class Myadapter (private val mentorArray: ArrayList<Mentor>): RecyclerView.Adapter<Myadapter.MyViewHolder>() {
+class Myadapter (private val projectsArray: ArrayList<Projects>): RecyclerView.Adapter<Myadapter.MyViewHolder>() {
     private lateinit var docRef: DatabaseReference
 
 
