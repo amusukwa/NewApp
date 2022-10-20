@@ -31,15 +31,15 @@ class Myadapter (private val projectsArray: ArrayList<Projects>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val mentor:Mentor = mentorArray[position]
-        holder.name.text = mentor.name
-        holder.proficiency.text = mentor.proficiency
+        val projects:Projects = projectsArray[position]
+        holder.name.text = projects.name
+        holder.proficiency.text = projects.description
 
 
     }
 
     override fun getItemCount(): Int {
-        return mentorArray.size
+        return projectsArray.size
     }
 
 

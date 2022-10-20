@@ -1,6 +1,7 @@
 package com.example.newapp
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -34,7 +35,13 @@ class ListActivity : AppCompatActivity() {
 
     private fun getMentor() {
         val db = FirebaseFirestore.getInstance()
-       // db.collection("projects").document().set(project)
+        db.collection("projects").get().addOnSuccessListener {
+            result-> for (document in result){
+                Log.d(TAG,"${document.id} =>${document.data}")
+            }
+        }.addOnFailureListener{
+            Log.d(TAG,"error getting document")
+        }
 
 //        docRef = FirebaseDatabase.getInstance().getReference("mentors")
 //        docRef.addValueEventListener(object:ValueEventListener{

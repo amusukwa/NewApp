@@ -7,17 +7,36 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
-import com.google.firebase.iid.FirebaseInstanceIdReceiver
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+
 
 class FirebaseCloudMessaging: FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         Log.d(TAG,"Refreshed token:$token")
 
-
     }
-    override fun onMessageReceived(message: RemoteMessage) {
+
+
+       override fun onMessageReceived(remoteMessage: RemoteMessage) {
+
+        var notificationBody = ""
+        var notificationTitle = ""
+        var notificationData = ""
+        try {
+            notificationData =  remoteMessage.data.toString()
+            notificationTitle = remoteMessage.data.toString()
+            notificationBody = remoteMessage.notification.toString()
+        } catch (e: NullPointerException) {
+
+            Log.e(TAG,"onMessageReceived: NullPointerException:" + e.message)
+        }
+
+        Log.d(TAG,"onMessageReceived: data: $notificationData")
+        Log.d(TAG,"onMessageReceived: notification body $notificationBody")
+
+        Log.d(TAG,"onMessageReceived:$notificationTitle")
+
 
 
         val notificationManager =

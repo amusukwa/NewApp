@@ -1,3 +1,3 @@
 package com.example.newapp
 
-data class Issue(val creator:String?=null, val name:String?=null, )
+data class Issue(val issueId:String?=null, val asignee:String?=null, val description:String?=null)
