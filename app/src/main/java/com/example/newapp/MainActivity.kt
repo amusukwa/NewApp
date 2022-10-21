@@ -11,10 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val mentorbutton: Button = findViewById(R.id.add_mentor)
+        val mentorbutton: Button = findViewById(R.id.add_issue)
         // val vm =  ViewModelProviders.of(this{MainActivityViewModel::class.java})
     }
 
@@ -33,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         //val dcRef = FirebaseDatabase.getInstance().getReference().child("mentors")
         val db = FirebaseFirestore.getInstance()
 
-        val nametxt: EditText = findViewById<EditText>(R.id.name)
+        val nametxt: EditText = findViewById<EditText>(R.id.issue_name)
         val description: EditText = findViewById<EditText>(R.id.description)
-        val project_creator: EditText = findViewById<EditText>(R.id.creator)
+        val project_creator: EditText = findViewById<EditText>(R.id.project)
 
 
         val name = nametxt.toString()
@@ -61,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this,"List Selected", Toast.LENGTH_SHORT).show()
             }R.id.action_home->{
             val  intent = Intent(this,
-                PicActivity::class.java)
+                IssueActivity::class.java)
             startActivity(intent)
                 Toast.makeText(this,"List", Toast.LENGTH_SHORT).show()
             }
