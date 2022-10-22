@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/issue_name" />
 
     <EditText
-        android:id="@+id/project"
+        android:id="@+id/project_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

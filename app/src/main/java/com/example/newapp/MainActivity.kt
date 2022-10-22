@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         val nametxt: EditText = findViewById<EditText>(R.id.issue_name)
         val description: EditText = findViewById<EditText>(R.id.description)
-        val project_creator: EditText = findViewById<EditText>(R.id.project)
+        val project_creator: EditText = findViewById<EditText>(R.id.project_name)
 
 
         val name = nametxt.toString()
